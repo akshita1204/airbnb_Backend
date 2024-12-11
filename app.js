@@ -1,8 +1,12 @@
+//core module
+const path=require('path');
+
 //External module
 const express=require('express')
 //Local module
 const userrouter=require('./routes/userRouter');
-const hostrouter=require('./routes/hostRouter')
+const hostrouter=require('./routes/hostRouter');
+const rootpath=require('./utils/pathUtils');
 
 const app=express()
 
@@ -55,7 +59,7 @@ app.use(userrouter);
 
 app.use((req,res,next)=>
 {
-    res.status(404).send(`<h1>404 page is not found!</h1>`);
+    res.status(404).sendFile(path.join(rootpath,'views','404.html'));
 })
 
 
