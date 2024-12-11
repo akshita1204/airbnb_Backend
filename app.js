@@ -13,9 +13,10 @@ app.use((req,res,next)=>
 })
 
 //check karlo ki body aayi hai yaa nahi 
-app.use(express.urlencoded());
-app.use(userrouter);
+app.use(express.urlencoded({extended:true}));
 app.use(hostrouter);
+app.use(userrouter);
+
 
 //Taken to the userrouter
 
@@ -59,7 +60,7 @@ app.use((req,res,next)=>
 
 
 
-const PORT = 3002;
+const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`Server running on the ${PORT}`);
 });
