@@ -50,6 +50,14 @@ app.use(hostrouter);
 //         })
 
 
+//For 404 page not found=> if we will not set the status it will show some valid status like 200 but we have to send 404 adn ordering is imp as isse pehle vaale middlewares ko execute hone ka chance mil rha hai 
+
+app.use((req,res,next)=>
+{
+    res.status(404).send(`<h1>404 page is not found!</h1>`);
+})
+
+
 
 const PORT = 3002;
 app.listen(PORT, () => {
