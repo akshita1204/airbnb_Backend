@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(hostrouter);
 app.use(userrouter);
 
-
+app.use(express.static(path.join(rootpath,'public')));
 //Taken to the userrouter
 
 // userrouter.get("/",(req,res,next)=>
