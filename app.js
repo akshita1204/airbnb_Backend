@@ -5,10 +5,12 @@ const path=require('path');
 const express=require('express')
 //Local module
 const userrouter=require('./routes/userRouter');
-const hostrouter=require('./routes/hostRouter');
+const {hostrouter}=require('./routes/hostRouter');
 const rootpath=require('./utils/pathUtils');
 
-const app=express()
+const app=express();
+app.set('view engine', 'ejs');
+app.set('views','views');
 
 app.use((req,res,next)=>
     {
@@ -21,7 +23,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(hostrouter);
 app.use(userrouter);
 
-app.use(express.static(path.join(rootpath,'public')));
+app.use(express.static(path.join(rootpath,'public')));  //for css
 //Taken to the userrouter
 
 // userrouter.get("/",(req,res,next)=>

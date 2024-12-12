@@ -3,4 +3,8 @@ npm install express --save
 npm install --save-dev nodemon
 npm install body-parser
 
+//For TailwindCSS
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+npx tailwindcss -i ./views/input.css -o ./public/output.css --watch
 

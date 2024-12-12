@@ -17,16 +17,18 @@ hostrouter.get("/host/add-home",(req,res,next)=>
         
         
     });
-
+const registered=[];
  hostrouter.post("/host/add-home",(req,res,next)=>
         {
-            console.log("Done ")
+            console.log("Done for",req.body,req.body.hname);
             // console.log(req.body);
             // res.send(`<h1>Registered Successfully!</h1>
             //     <a href="/">Go to Home</a>
             //      `);      
            //res.redirect('/'); 
+           registered.push({hname:req.body.hname});
            res.sendFile(path.join(rootpath,'views','homeAdded.html'));
         })
 
-module.exports=hostrouter;
+exports.hostrouter=hostrouter;
+exports.registered=registered;
