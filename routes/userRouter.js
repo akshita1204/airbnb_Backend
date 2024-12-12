@@ -18,7 +18,7 @@ const {registered}=require('./hostRouter')
         //     `);
         userrouter.get("/", (req, res, next) => {
             console.log(registered);
-            res.render('home', {registered:registered})
+            res.render('home', {registered:registered,Pagetitle:'Airbnb Home'})
             //res.sendFile(path.join(rootpath, 'views', 'home.html'));
           });
         

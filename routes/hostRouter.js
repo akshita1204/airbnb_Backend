@@ -13,7 +13,9 @@ hostrouter.get("/host/add-home",(req,res,next)=>
         //     <input type="submit"/>
         //     </form>
         //     `);     
-        res.sendFile(path.join(rootpath,'views','addHome.html')); 
+
+        //res.sendFile(path.join(rootpath,'views','addHome.html')); 
+        res.render('addHome',{Pagetitle:' Welcome to Home Page'})
         
         
     });
@@ -27,7 +29,9 @@ const registered=[];
             //      `);      
            //res.redirect('/'); 
            registered.push({hname:req.body.hname});
-           res.sendFile(path.join(rootpath,'views','homeAdded.html'));
+           
+           //res.sendFile(path.join(rootpath,'views','homeAdded.html'));
+           res.render('homeAdded',{Pagetitle:' Successfull Added Page'})
         })
 
 exports.hostrouter=hostrouter;
