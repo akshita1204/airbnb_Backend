@@ -28,7 +28,7 @@ const registered=[];
             //     <a href="/">Go to Home</a>
             //      `);      
            //res.redirect('/'); 
-           registered.push({hname:req.body.hname});
+           registered.push(req.body);
            
            //res.sendFile(path.join(rootpath,'views','homeAdded.html'));
            res.render('homeAdded',{Pagetitle:' Successfull Added Page'})

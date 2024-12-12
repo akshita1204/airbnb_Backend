@@ -9,9 +9,35 @@
 <body>
     <!-- <header><h1>welocome to Home Page</h1></header> -->
     <%- include('partials/headers') %>
-    <main> 
-        <form action="/host/add-home" method="POST">
-        <input type="text" name="hname" placeholder="Enter your house name"/>
+    <main  class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md"> 
+        <form action="/host/add-home" method="POST" class="max-w-md mx-auto">
+
+        <input type="text"
+         name="hname"
+         placeholder="Enter your house name"
+         class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+          />
+
+        <input type="text" 
+        name="price" 
+        placeholder="Price per Night"
+        />
+
+        <input type="text" 
+        name="location" 
+        placeholder="Location"
+        />
+
+        <input type="text" 
+        name="rating" 
+        placeholder="Rating"
+        />
+
+        <input type="text" 
+        name="photo url" 
+        placeholder="Image"
+        />
+
         <input type="submit"/>
         </form>
     </main>
