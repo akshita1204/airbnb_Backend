@@ -1,38 +1,26 @@
-exports.gethome=(req,res,next)=>
-    {
-        //console.log(req.url,req.method);
-        // res.send(`<h1>welocome to Home Page</h1>
-        //     <form action="/add-home" method="POST">
-        //     <input type="text" name="hname" placeholder="Enter your house name"/>
-        //     <input type="submit"/>
-        //     </form>
-        //     `);     
+const Home = require("../models/home");
 
-        //res.sendFile(path.join(rootpath,'views','addHome.html')); 
-        res.render('addHome',{Pagetitle:' Welcome to Home Page'})      
-    }
+exports.gethome = (req, res, next) => {
+    // Rendering the 'addHome' view template
+    res.render('addHome', { Pagetitle: 'Welcome to Home Page' });
+};
 
-const registered=[];  
-exports.getposthome=(req,res,next)=>
-    {
-        console.log("Done for",req.body,req.body.hname);
-        // console.log(req.body);
-        // res.send(`<h1>Registered Successfully!</h1>
-        //     <a href="/">Go to Home</a>
-        //      `);      
-       //res.redirect('/'); 
-       registered.push(req.body);
-       
-       //res.sendFile(path.join(rootpath,'views','homeAdded.html'));
-       res.render('homeAdded',{Pagetitle:' Successfull Added Page'})
-    }
+exports.getposthome = (req, res, next) => {
+    // Get data from form
+    const { hname, price, location, rating } = req.body;
+    const home = new Home(hname, price, location, rating);
 
-exports.gethomeslist=(req, res, next) => {
-    console.log(registered);
-    res.render('home', {registered:registered,Pagetitle:'Airbnb Home'})
-    //res.sendFile(path.join(rootpath, 'views', 'home.html'));
-  }
+    // Save home
+    home.save();
 
-    exports.registered=registered;
+    // Render successful page
+    res.render('homeAdded', { Pagetitle: 'Successfully Added Home' });
+};
 
-    
+exports.gethomeslist = (req, res, next) => {
+    // Fetch all registered homes and render home view with the fetched data
+    Home.fetchAll((registered) => {
+        console.log("Registered Homes:", registered);  // Log data to debug
+        res.render('home', { registered: registered, Pagetitle: 'Airbnb Homes' });
+    });
+};
