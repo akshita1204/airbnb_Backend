@@ -21,6 +21,7 @@ const homescontroller=require("../controllers/home")
         userrouter.get("/bookings",homescontroller.getBookings);
         userrouter.get("/fav-list",homescontroller.getfavlist);
         userrouter.get("/index",homescontroller.getindex);
+        userrouter.get("/:homeid",homescontroller.getdetails);
         
    
 module.exports=userrouter;

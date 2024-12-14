@@ -37,3 +37,9 @@ exports.getindex = (req, res, next) => {
         res.render('store/index', {registered: registered,  Pagetitle: 'Airbnb Homes' });
     });
 };
+
+exports.getdetails= (req, res, next) => {
+ const homeid=req.params.homeid;
+ console.log(homeid)
+ res.render('store/homedetail', {  Pagetitle: 'Home Detail' });
+};

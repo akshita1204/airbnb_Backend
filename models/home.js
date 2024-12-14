@@ -12,6 +12,7 @@ module.exports = class Home {
     }
 
     save() {
+        this.id=Math.random().toString();
         Home.fetchAll(registered => {
             // Add the new home to the registered homes list
             registered.push(this);
