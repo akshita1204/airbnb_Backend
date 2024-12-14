@@ -1,7 +1,24 @@
 
 </head>
 <body>
-
-    <main><h1>Home Detail Page<found class=""></found></h1></main>
+    <main>
+        <h1>Home Detail Page<found class=""></found></h1>
+        <div>
+            
+                <h3 class="text-xl font-semibold text-gray-800 mb-2"><%= home.hname %></h3>
+                <div class="text-sm text-gray-600">
+                  <strong>Rating:</strong> <%= home.rating %>
+                </div>
+                <div class="text-sm text-gray-600">
+                  <strong>Price:</strong> <%= home.price %>
+                </div>
+                <div class="text-sm text-gray-600">
+                  <strong>Location:</strong> <%= home.location %>
+                </div>
+                <button class="mt-4 bg-green-500 text-white px-6 py-2 rounded hover:bg-green-400 transition duration-300">BOOK</button>
+              
+        </div>
+    
+    </main>
 </body>
 </html>

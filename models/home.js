@@ -38,4 +38,16 @@ module.exports = class Home {
             }
         });
     }
+
+
+    static findbyid(homeid,callback)
+    {
+        const homepath = path.join(rootdir, 'data', 'homes.json');
+        this.fetchAll(homes=>
+        {
+            const homefound=homes.find((home)=>home.id===homeid);
+            callback(homefound);
+        }
+        )
+    }
 };

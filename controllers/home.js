@@ -40,6 +40,17 @@ exports.getindex = (req, res, next) => {
 
 exports.getdetails= (req, res, next) => {
  const homeid=req.params.homeid;
- console.log(homeid)
- res.render('store/homedetail', {  Pagetitle: 'Home Detail' });
+ Home.findbyid(homeid,home=>
+ {
+    if(!home)
+    {
+        console.log("Home not found");
+        res.redirect("/");
+    }
+    console.log(homeid)
+    console.log(home);
+    res.render('store/homedetail', {  home:home,Pagetitle: 'Home Detail' });
+ }
+ )
+
 };
