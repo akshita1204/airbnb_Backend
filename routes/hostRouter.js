@@ -3,11 +3,12 @@ const path=require('path');
 const express=require('express');
 const hostrouter=express.Router();
 const rootpath=require("../utils/pathUtils");
-const homescontroller=require("../controllers/home")
+const hostcontroller=require("../controllers/host")
 
-hostrouter.get("/host/add-home",homescontroller.gethome);
+hostrouter.get("/host/add-home",hostcontroller.gethome);
 
- hostrouter.post("/host/add-home",homescontroller.getposthome)
+ hostrouter.post("/host/add-home",hostcontroller.getposthome);
+ hostrouter.get("/host/homelist",hostcontroller.gethosthome);
 
 exports.hostrouter=hostrouter;
 // exports.registered=registered;

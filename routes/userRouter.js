@@ -18,6 +18,9 @@ const homescontroller=require("../controllers/home")
         //     <a href="/host/add-home">Add Home</a>
         //     `);
         userrouter.get("/",homescontroller.gethomeslist);
+        userrouter.get("/bookings",homescontroller.getBookings);
+        userrouter.get("/fav-list",homescontroller.getfavlist);
+        userrouter.get("/index",homescontroller.getindex);
         
    
 module.exports=userrouter;
