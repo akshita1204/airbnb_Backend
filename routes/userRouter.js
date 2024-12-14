@@ -7,7 +7,8 @@ const userrouter=express.Router();
 
 //local module
 const rootpath=require("../utils/pathUtils");
-const {registered}=require('./hostRouter')
+const homescontroller=require("../controllers/home")
+//const {registered}=require('./hostRouter')
 
 
         //console.log(req.url,req.method);
@@ -16,11 +17,7 @@ const {registered}=require('./hostRouter')
         //     `<h1>welocome to airbnb</h1>
         //     <a href="/host/add-home">Add Home</a>
         //     `);
-        userrouter.get("/", (req, res, next) => {
-            console.log(registered);
-            res.render('home', {registered:registered,Pagetitle:'Airbnb Home'})
-            //res.sendFile(path.join(rootpath, 'views', 'home.html'));
-          });
+        userrouter.get("/",homescontroller.gethomeslist);
         
    
 module.exports=userrouter;

@@ -7,6 +7,7 @@ const express=require('express')
 const userrouter=require('./routes/userRouter');
 const {hostrouter}=require('./routes/hostRouter');
 const rootpath=require('./utils/pathUtils');
+const errorscontroller=require("./controllers/errors")
 
 const app=express();
 app.set('view engine', 'ejs');
@@ -59,10 +60,7 @@ app.use(express.static(path.join(rootpath,'public')));  //for css
 
 //For 404 page not found=> if we will not set the status it will show some valid status like 200 but we have to send 404 adn ordering is imp as isse pehle vaale middlewares ko execute hone ka chance mil rha hai 
 
-app.use((req,res,next)=>
-{
-    res.status(404).render('404',{Pagetitle:'Page not found'})
-})
+app.use(errorscontroller.pagenotfound);
 //sendFile(path.join(rootpath,'views','404.html'));
 
 
