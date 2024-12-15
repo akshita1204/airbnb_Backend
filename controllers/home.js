@@ -23,17 +23,21 @@ exports.getBookings = (req, res, next) => {
 };
 
 exports.getfavlist = (req, res, next) => {
-    // Fetch all registered homes and render home view with the fetched data
-Favorites.getfav(favorites=>
-{
-    Home.fetchAll((registered) => {
-        const favhome=registered.filter(home=>favorites.includes(home.id));
-        res.render('store/fav-list', { favhome:favhome, Pagetitle: 'My Favorites' });
+    Favorites.getfav(favorites => {
+        console.log("Favorite Home IDs:", favorites); // Debug: check favorite IDs being fetched
+        Home.fetchAll(registered => {
+            console.log("Registered Homes:", registered); // Debug: check registered homes
+            const favhome = registered.filter(home => favorites.includes(String(home.id)));
+            console.log("Filtered Favorite Homes:", favhome); // Debug: filtered favorites
+            
+            // Ensure favhome is not empty and is passed to the view
+            if (favhome.length === 0) {
+                console.log("No favorite homes found for the user.");
+            }
+            
+            res.render('store/fav-list', { favhome: favhome, Pagetitle: 'My Favorites' });
+        });
     });
-}
-)
- 
-       // res.render('store/bookings', { registered: registered, Pagetitle: 'Bookings' })
 };
 
 
@@ -59,11 +63,11 @@ exports.postaddtofav = (req, res, next) => {
     Favorites.addtofav(homeId, (error) => {
         if (error) {
             console.log("Error while marking favorite:", error);
-            return res.redirect("store/fav-list"); // Error ke saath fav-list par redirect karein
+            return res.redirect("/fav-list"); // Error ke saath fav-list par redirect karein
         }
 
         console.log("Home added to favorites successfully!");
-        res.redirect("store/fav-list"); // Success ke baad fav-list page par redirect karein
+        res.redirect("/fav-list"); // Success ke baad fav-list page par redirect karein
     });
 };
 
