@@ -1,3 +1,4 @@
+const Favorites = require("../models/favmodel");
 const Home = require("../models/home");
 
 
@@ -23,20 +24,47 @@ exports.getBookings = (req, res, next) => {
 
 exports.getfavlist = (req, res, next) => {
     // Fetch all registered homes and render home view with the fetched data
-
+Favorites.getfav(favorites=>
+{
     Home.fetchAll((registered) => {
-        res.render('store/fav-list', { registered: registered, Pagetitle: 'My Favorites' });
+        const favhome=registered.filter(home=>favorites.includes(home.id));
+        res.render('store/fav-list', { favhome:favhome, Pagetitle: 'My Favorites' });
     });
-       // res.render('store/bookings', { registered: registered, Pagetitle: 'Bookings' });
-
+}
+)
+ 
+       // res.render('store/bookings', { registered: registered, Pagetitle: 'Bookings' })
 };
 
 
-exports.postaddtofav= (req, res, next) => {
-    // Fetch all registered homes and render home view with the fetched data
+// exports.postaddtofav= (req, res, next) => {
+//     // Fetch all registered homes and render home view with the fetched data
 
-    console.log("add to fav" ,req.body.id);
-    res.redirect("/fav-list")
+//     console.log("add to fav" ,req.body.id);
+//     Favorites.addtofav(req.body.id,error=>
+//     {
+//         if(error)
+//         {
+//             console.log("Error while marking fav")
+//         }
+//         res.redirect()
+//     }
+//     )
+//     res.redirect("store/fav-list")
+// };
+exports.postaddtofav = (req, res, next) => {
+    const homeId = req.body.id; // Hidden field se ID ko lena
+
+    // Add home ID to favorites
+    Favorites.addtofav(homeId, (error) => {
+        if (error) {
+            console.log("Error while marking favorite:", error);
+            return res.redirect("store/fav-list"); // Error ke saath fav-list par redirect karein
+        }
+
+        console.log("Home added to favorites successfully!");
+        res.redirect("store/fav-list"); // Success ke baad fav-list page par redirect karein
+    });
 };
 
 

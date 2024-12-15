@@ -5,10 +5,10 @@ const hostrouter=express.Router();
 const rootpath=require("../utils/pathUtils");
 const hostcontroller=require("../controllers/host")
 
-hostrouter.get("/host/add-home",hostcontroller.gethome);
+hostrouter.get("/add-home",hostcontroller.gethome);
 
  hostrouter.post("/host/add-home",hostcontroller.getposthome);
- hostrouter.get("/host/homelist",hostcontroller.gethosthome);
+ hostrouter.get("/homelist",hostcontroller.gethosthome);
 
 exports.hostrouter=hostrouter;
 // exports.registered=registered;
