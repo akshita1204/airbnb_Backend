@@ -30,6 +30,16 @@ exports.getfavlist = (req, res, next) => {
        // res.render('store/bookings', { registered: registered, Pagetitle: 'Bookings' });
 
 };
+
+
+exports.postaddtofav= (req, res, next) => {
+    // Fetch all registered homes and render home view with the fetched data
+
+    console.log("add to fav" ,req.body.id);
+    res.redirect("/fav-list")
+};
+
+
 exports.getindex = (req, res, next) => {
     // Fetch all registered homes and render home view with the fetched data
     Home.fetchAll((registered) => {

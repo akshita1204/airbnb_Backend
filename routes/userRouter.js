@@ -22,6 +22,7 @@ const homescontroller=require("../controllers/home")
         userrouter.get("/fav-list",homescontroller.getfavlist);
         userrouter.get("/index",homescontroller.getindex);
         userrouter.get("/:homeid",homescontroller.getdetails);
+        userrouter.post("/fav-list",homescontroller.postaddtofav);
         
    
 module.exports=userrouter;
