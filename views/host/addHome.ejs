@@ -4,32 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title> -->
-    <%- include('../partials/head') %>
+    <!-- <%- include('../partials/head') %> -->
 </head>
 <body>
     <!-- <header><h1>welocome to Home Page</h1></header> -->
-    <%- include('../partials/headers') %>
+    <!-- <%- include('../partials/headers') %> -->
     <main  class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md"> 
+        <h1 ><%=editing ? "Edit" : "Register" %> Your Home on AirBnB</h1>
         <form action="/host/add-home" method="POST" class="max-w-md mx-auto">
 
         <input type="text"
          name="hname"
+         value="<%= editing ? home.hname : ''%>"
          placeholder="Enter your house name"
          class="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
           />
 
         <input type="text" 
         name="price" 
+        value="<%= editing ? home.price : ''%>"
         placeholder="Price per Night"
         />
 
         <input type="text" 
         name="location" 
+        value="<%= editing ? home.location : ''%>"
         placeholder="Location"
         />
 
         <input type="text" 
         name="rating" 
+        value="<%= editing ? home.rating : ''%>"
         placeholder="Rating"
         />
 

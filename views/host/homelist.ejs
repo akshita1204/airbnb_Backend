@@ -17,7 +17,7 @@
         <div class="text-sm text-gray-600">
           <strong>Location:</strong> <%= home.location %>
         </div>
-        <button class="mt-4 bg-green-500 text-white px-6 py-2 rounded hover:bg-green-400 transition duration-300">EDIT</button>
+        <a href="/add-home/<%= home.id %>?editing=true" class="mt-4 bg-green-500 text-white px-6 py-2 rounded hover:bg-green-400 transition duration-300">EDIT</a>
         <button class="mt-4 bg-green-500 text-white px-6 py-2 rounded hover:bg-green-400 transition duration-300">DELETE</button>
       </li>
     <% }) %>
