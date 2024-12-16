@@ -41,10 +41,25 @@ exports.getposthome = (req, res, next) => {
     const { hname, price, location, rating } = req.body;
     const home = new Home(hname, price, location, rating);
 
-    // Save home
-    home.save();
+    // // Save home
+     home.save();
 
-    // Render successful page
+    // // Render successful page
     res.render('host/homeAdded', { Pagetitle: 'Successfully Added Home' });
+    // res.redirect('/homelist');
+};
+
+
+
+exports.postedithome = (req, res, next) => {
+  // Get data from form
+  const {id, hname, price, location, rating } = req.body;
+  const home = new Home(hname, price, location, rating);
+  home.id=id;
+  // Save home
+  home.save();
+
+  // Render successful page
+  res.redirect('/homelist');
 };
 
