@@ -4,7 +4,8 @@ const rootdir = require('../utils/pathUtils');
 let registered = [];
 
 module.exports = class Home {
-    constructor(hname, price, location, rating) {
+    constructor(hname, price, location, rating,id=null ){
+        this.id=id;
         this.hname = hname;
         this.price = price;
         this.location = location;
@@ -12,15 +13,33 @@ module.exports = class Home {
     }
 
     save() {
-        this.id=Math.random().toString();
+        
         Home.fetchAll(registered => {
-            // Add the new home to the registered homes list
-            registered.push(this);
-
+            if(this.id) //is exists karti hai => edit home case
+            {
+              registered=registered.map(home=>
+              { 
+                if(home.id===this.id )
+                {
+                  return this;
+                }
+                else
+                {
+                 return home;
+                }
+              }
+              )
+            }
+            else //add home case 
+            {
+                this.id=Math.random().toString();
+                 // Add the new home to the registered homes list
+                registered.push(this);
+            }
             const homepath = path.join(rootdir, 'data', 'homes.json');
             fs.writeFile(homepath, JSON.stringify(registered), (error) => {
                 if (error) {
-                    console.error("Error writing file:", error);
+                    console.error("Error writing file:", error)
                 }
             });
         });
