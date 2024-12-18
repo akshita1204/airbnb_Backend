@@ -13,4 +13,5 @@ hostrouter.get("/add-home/:homeid",hostcontroller.getedithome);
 hostrouter.post("/add-home",hostcontroller.postedithome);
 
 exports.hostrouter=hostrouter;
-// exports.registered=registered;
+// exports.registered=registered
+//now no need to add 
