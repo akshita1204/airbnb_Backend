@@ -14,4 +14,4 @@ hostrouter.post("/add-home",hostcontroller.postedithome);
 
 exports.hostrouter=hostrouter;
 // exports.registered=registered
-//now no need to add 
+//now no need to 
